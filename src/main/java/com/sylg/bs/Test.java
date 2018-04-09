@@ -1,7 +1,7 @@
 package com.sylg.bs;
 
 import java.security.MessageDigest;  
-import java.security.NoSuchAlgorithmException;  
+import java.security.NoSuchAlgorithmException;
  //
 public class Test{  
       //MD5计算
