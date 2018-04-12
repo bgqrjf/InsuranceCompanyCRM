@@ -17,6 +17,7 @@
 	</properties>
 
 	<dependencies>
+		
 		<!--spring boot web启动 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -45,7 +46,6 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.21</version>
 		</dependency>
 
 		<!--redis -->
@@ -66,7 +66,7 @@
 			<version>1.4.7.RELEASE</version>
 		</dependency>
 
-		<!-- kafka -->
+		<!-- kafka 0.10 -->
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
@@ -78,8 +78,55 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-         
-        
+
+		<!--Spark -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-streaming_2.11</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.spark-project.spark</groupId>
+			<artifactId>unused</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_2.10</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+		<!--Scala语言 -->
+		<dependency>
+			<groupId>org.scalacheck</groupId>
+			<artifactId>scalacheck_2.11</artifactId>
+			<version>1.13.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>2.11.11</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.scopt</groupId>
+			<artifactId>scopt_2.11</artifactId>
+			<version>3.7.0</version>
+		</dependency>
+
+		<!--Hadoop -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-client</artifactId>
+			<version>2.6.4</version>
+		</dependency>
+       
 	</dependencies>
 
 

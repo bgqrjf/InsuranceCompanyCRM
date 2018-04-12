@@ -9,8 +9,8 @@ public class KafkaDemo {
 	@Autowired
 	private Producer producer;
 	@RequestMapping("/kafka")
-	public String testKafka() {
-		producer.sendTest();
+	public String testKafka(String str) {
+		producer.sendTest(str);
 		return "ok";
 	}
 }

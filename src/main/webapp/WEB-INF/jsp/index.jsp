@@ -7,6 +7,11 @@
 <title>测试</title>
 <script type="text/javascript" src="/jq/jquery-3.3.1.min.js"></script>
 <script>
+$(function(){
+	   alert('${agentCode}')
+	   alert('${orderUrl}')
+	   window.location.href="https://"+'${orderUrl}'+"?agentCode="+'${agentCode}'
+})
 	/*  function submit1(){ */
 
 	/* 方法一 测试可以把checkbox值传到list 

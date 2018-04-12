@@ -1,10 +1,14 @@
 package com.sylg.bs.user.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+
 import com.sylg.bs.user.bean.UserInfo;
+import com.sylg.bs.user.bean.UserInfo2;
 
 
 @Mapper
@@ -24,4 +28,9 @@ public interface UserMapper {
     		+ "(#{userInfoName}, #{userInfoAge},#{userInfoSex}),#{userInfoAddress},#{userInfoCname},"
     		+ "#{userInfoCtype},#{userInfoStatement},#{userInfoAttribute},#{userInfoJob}")
     public int addUserInfo(@Param("userInfoName") String userInfoName, @Param("userInfoAge") Integer userInfoAge,@Param("userInfoSex")Integer userInfoSex);
+    
+    @Select("SELECT testDate FROM dd ")
+    public List<UserInfo2> getByName2();
+    @Select("Insert into dd(testDate) values(#{time})")
+    public Integer getByName3(@Param("time") String time);
 }

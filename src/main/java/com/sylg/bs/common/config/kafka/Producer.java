@@ -19,9 +19,9 @@ public class Producer {
 	    private KafkaTemplate<String,Object> kafkaTemplate;
 
 	    /**
-	     * 发送消息到kafka,主题为test
+	     * 发送消息到kafka,主题为sbKafka
 	     */
-	    public void sendTest(){
-	        kafkaTemplate.send("demo","hello,kafka  "  + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+	    public void sendTest(String str){
+	        kafkaTemplate.send("sbKafka",str+": "+LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss")));
 	    }
 }
