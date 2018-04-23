@@ -17,7 +17,7 @@
 	</properties>
 
 	<dependencies>
-		
+
 		<!--spring boot web启动 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -95,7 +95,6 @@
 			<artifactId>unused</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-sql_2.10</artifactId>
@@ -126,7 +125,18 @@
 			<artifactId>hadoop-client</artifactId>
 			<version>2.6.4</version>
 		</dependency>
-       
+
+		<!--swagger2实现REST接口 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+		</dependency>
 	</dependencies>
 
 

@@ -2,15 +2,15 @@ package com.sylg.bs.common.config.spark;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.streaming.Durations;
+import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 @Configuration
 @ConfigurationProperties(prefix = "spark")
 public class SparkContextBean {
-
 	private String sparkHome;
 	private String appName;
 	private String master;
@@ -33,7 +33,7 @@ public class SparkContextBean {
 	@ConditionalOnMissingBean(SparkConf.class)
 	public SparkConf sparkConf() throws Exception {
 		SparkConf conf = new SparkConf().setSparkHome(sparkHome)
-				.setAppName(appName).setMaster(master);
+				.setAppName(appName).setMaster(master).set("spark.driver.allowMultipleContexts", "true");
 		return conf;
 	}
 
@@ -47,10 +47,27 @@ public class SparkContextBean {
 	 * @throws
 	 * @date 2018年4月12日
 	 */
-	@Bean
-	@ConditionalOnMissingBean(JavaSparkContext.class)
+	/*@Bean
+	@ConditionalOnMissingBean(JavaSparkContext.class)*/
 	public JavaSparkContext javaSparkContext() throws Exception {
+		
 		return new JavaSparkContext(sparkConf());
+		
+	}
+	/**
+	 * 
+	 * @Description: spark-streamingContext对象 和上面的JavaSparkContext对象冲突
+	 * @author QSNP242
+	 * @return  JavaStreamingContext
+	 * @throws Exception 
+	 * @throws
+	 * @date 2018年4月13日
+	 */
+	@Bean
+	@ConditionalOnMissingBean(JavaStreamingContext.class)
+	public JavaStreamingContext javaStreamingContext() throws Exception{
+		  JavaStreamingContext jssc = new JavaStreamingContext(sparkConf(), Durations.seconds(5));
+		  return jssc;
 	}
 
 	public String getSparkHome() {

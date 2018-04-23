@@ -13,6 +13,7 @@ public class DemoControl {
 	
 	@RequestMapping("/demo/spark")
 	public Map<String, Object> sparkDemo() {
-		return sparkTestService.sparkDemo();
+		/*return sparkTestService.sparkDemo();*/
+		return null;
 	}
 }
