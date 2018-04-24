@@ -14,6 +14,8 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<spark.version>2.3.0</spark.version>
+		<scala.version>2.11</scala.version>
 	</properties>
 
 	<dependencies>
@@ -22,13 +24,28 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- 不要内部tomcat容器 ,外部tomcat启动模式 -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- 外部tomcat -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>8.0.36</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- jsp -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-			<!-- <scope>provided</scope> -->
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- 日志 -->
@@ -36,7 +53,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
-
+		<!-- Logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			</dependency>
+			
 		<!--mybaits -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -47,7 +69,12 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-
+		<!--Druid 数据连接池 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>1.1.9</version>
+		</dependency>
 		<!--redis -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -82,13 +109,18 @@
 		<!--Spark -->
 		<dependency>
 			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_${scala.version}</artifactId>
+			<version>${spark.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
-			<version>2.2.0</version>
+			<version>2.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-streaming_2.11</artifactId>
-			<version>2.2.0</version>
+			<version>2.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.spark-project.spark</groupId>
@@ -97,8 +129,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-sql_2.10</artifactId>
-			<version>1.6.1</version>
+			<artifactId>spark-sql_2.11</artifactId>
+			<version>2.3.0</version>
 		</dependency>
 
 		<!--Scala语言 -->
@@ -108,23 +140,22 @@
 			<version>1.13.5</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
-			<version>2.11.11</version>
+			<version>2.11.12</version>
 		</dependency>
 		<dependency>
 			<groupId>com.github.scopt</groupId>
 			<artifactId>scopt_2.11</artifactId>
-			<version>3.7.0</version>
+			<version>3.2.0</version>
 		</dependency>
 
+
 		<!--Hadoop -->
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-client</artifactId>
-			<version>2.6.4</version>
-		</dependency>
+		<!-- <dependency> <groupId>org.apache.hadoop</groupId> <artifactId>hadoop-client</artifactId> 
+			<version>2.6.4</version> </dependency> -->
 
 		<!--swagger2实现REST接口 -->
 		<dependency>
@@ -137,11 +168,14 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.6.1</version>
 		</dependency>
+
+
 	</dependencies>
 
 
 
 	<build>
+		<finalName>保险公司的CRM系统</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -153,6 +187,14 @@
 						<version>1.2.5.RELEASE</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<!-- war 插件来定义打包以后的 war 包名称，以免 maven 为我们默认地起了一个带版本号的 war 包名称 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>boot</warName>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

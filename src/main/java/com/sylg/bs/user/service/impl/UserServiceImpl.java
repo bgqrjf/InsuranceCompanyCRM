@@ -21,19 +21,16 @@ private UserMapper usermapper;
 
 	@Override
 	public int insert(String name, Integer age) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public List<UserInfo2> getByName2() {
-		// TODO Auto-generated method stub
 		return usermapper.getByName2();
 	}
 
 	@Override
 	public Integer getByName3(String time) {
-		// TODO Auto-generated method stub
 		return usermapper.getByName3(time);
 	}
 
